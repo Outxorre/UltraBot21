@@ -38,13 +38,13 @@ def get_points(user):
 @bot.command()
 async def очки(ctx, member: discord.Member):
     score = get_points(member)
-    await ctx.send(f"У {member.display_name} {score} очков крутости")
+    await ctx.send(f"**У {member.display_name} {score} очков крутости**")
 
 # Команда: !сколько у меня очков
 @bot.command(name="сколько")
 async def сколько_у_меня_очков(ctx):
     score = get_points(ctx.author)
-    await ctx.send(f"{ctx.author.display_name}, у тебя {score} очков крутости")
+    await ctx.send(f"**{ctx.author.display_name}, у тебя {score} очков крутости**")
 
 # Команда: !плюс 5 (ответом на сообщение)
 @bot.command()
@@ -54,9 +54,9 @@ async def плюс(ctx, amount: int):
         replied = await ctx.channel.fetch_message(ctx.message.reference.message_id)
         target_user = replied.author
         add_points(target_user, amount)
-        await ctx.send(f"{target_user.display_name} получил {amount} очков крутости!")
+        await ctx.send(f"**{target_user.display_name} получил {amount} очков крутости!**")
     else:
-        await ctx.send("Ответь на сообщение пользователя, которому хочешь добавить очки!")
+        await ctx.send("**Ответь на сообщение пользователя, которому хочешь добавить очки!**")
 
 # Команда: !минус 5 (ответом на сообщение)
 @bot.command()
@@ -66,16 +66,18 @@ async def минус(ctx, amount: int):
         replied = await ctx.channel.fetch_message(ctx.message.reference.message_id)
         target_user = replied.author
         add_points(target_user, -amount)
-        await ctx.send(f"{target_user.display_name} потерял {amount} очков крутости...")
+        await ctx.send(f"**{target_user.display_name} потерял {amount} очков крутости...**")
     else:
-        await ctx.send("Ответь на сообщение пользователя, у которого хочешь отнять очки!")
+        await ctx.send(f"**Ответь на сообщение пользователя, у которого хочешь отнять очки!**")
 
 # Обработка ошибки прав
 @плюс.error
 @минус.error
 async def permission_error(ctx, error):
     if isinstance(error, CheckFailure):
-        await ctx.send("СОСИ МОЮ ЖОПУ У ТЕБЯ НЕТ АДМИНКИ")
+        await ctx.send("**СОСИ МОЮ ЖОПУ У ТЕБЯ НЕТ АДМИНКИ**")
 
 # Запуск
-bot.run("ТВОЙ_ТОКЕН_БОТА")
+bot.run("MTM1OTE5MTU3NTIwNDIwMDU4Mg.G2tqDM.EM-kW0BSgFtsoPClXm7WYqtfNJSzsOvH05uM7o")
+
+#helloworld("print")1
